@@ -3,9 +3,10 @@ import java.util.Scanner;
 public class MainApp {
 
     public static void main(String[] args) {
-        AddressBook addressBook = new AddressBook();
+        Agenda addressBook = new Agenda();
         Scanner scanner = new Scanner(System.in);
         Integer option;
+        addressBook.loadContact();
 
         do {
             System.out.println("\n*** Contact Address Book ***");
@@ -31,9 +32,11 @@ public class MainApp {
                     String phone = scanner.nextLine();
                     Contact contact = new Contact(name, email, age, phone);
                     addressBook.addContact(contact);
+                    addressBook.storeContact();
                     break;
                 case 2:
                     addressBook.viewContacts();
+                    addressBook.loadContact();
                     break;
                 case 3:
                     System.out.print("Enter the email of the contact to search: ");
@@ -44,6 +47,7 @@ public class MainApp {
                     System.out.print("Enter the email of the contact to delete: ");
                     email = scanner.nextLine();
                     addressBook.deleteContact(email);
+                    addressBook.storeContact();
                     break;
                 case 5:
                     System.out.println("Exiting...");
